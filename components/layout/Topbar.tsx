@@ -33,7 +33,7 @@ const Topbar = () => {
       </div>
 
       <div className="relative flex gap-5 items-center">
-        <Menu className="text-grey-1 cursor-pointer" onClick={() => setDropdownMenu(!dropdownMenu)} />
+        <Menu className="text-grey-1 cursor-pointer md:hidden" onClick={() => setDropdownMenu(!dropdownMenu)} />
         {dropdownMenu && (
           <div className="absolute top-10 right-6 flex flex-col gap-8 p-5 bg-white rounded-lg shadow-xl">
             {navLinks.map((link) => (

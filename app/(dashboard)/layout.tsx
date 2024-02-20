@@ -2,7 +2,7 @@ import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 
 import LeftSideBar from "@/components/layout/LeftSideBar";
-import MainContainer from "@/components/layout/MainContainer";
+import Topbar from "@/components/layout/Topbar";
 
 export default async function DashboardLayout({
   children,
@@ -16,11 +16,10 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex">
+    <div className="flex max-lg:flex-col">
       <LeftSideBar />
-      <MainContainer>
-        {children}
-      </MainContainer>
+      <Topbar />
+      <div className="flex-1">{children}</div>
     </div>
   );
 }
