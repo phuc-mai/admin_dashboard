@@ -60,7 +60,7 @@ type OrderItemType = {
 
 type OrderItemColumnType = {
   _id: string;
-  title: string;
+  product: ProductType;
   color: string;
   size: string;
   quantity: number;

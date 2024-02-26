@@ -4,6 +4,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { connectToDB } from "@/lib/mongoDB";
 import Collection from "@/lib/models/Collection";
 import Product from "@/lib/models/Product";
+import { revalidatePath } from "next/cache";
 
 export const GET = async (
   req: NextRequest,
@@ -100,7 +101,7 @@ export const DELETE = async (
       { collections: collectionId },
       { $pull: { collections: collectionId } }
     );
-
+    
     return new NextResponse("Collection deleted successfully", { status: 200 });
   } catch (error) {
     console.log("[collectionId_DELETE]", error);

@@ -1,33 +1,17 @@
-"use client"
-
-import { useEffect, useState } from "react";
-
 import CollectionDashboard from "@/components/collections/CollectionDashboard";
-import Loader from "@/components/custom ui/Loader";
+import Collection from "@/lib/models/Collection";
+import Product from "@/lib/models/Product";
 
-const Collections = () => {
-  const [loading, setLoading] = useState(true);
-  const [collections, setCollections] = useState<CollectionType[]>([]);
+const Collections = async () => {
+  const res = await fetch("http://localhost:3000/api/collections", {
+    method: "GET",
+  });
+  
+  const collections = await res.json();
 
-  const getCollections = async () => {
-    try {
-      const res = await fetch("/api/collections", {
-        method: "GET",
-      });
-      const data = await res.json();
-      setCollections(data);
-      setLoading(false);
-    }
-    catch (error) {
-      console.log("collections_GET", error);
-    }
-  }
+  // const collections = await Collection.find().populate({ path: "products.product", model: Product }) as CollectionType[]
 
-  useEffect(() => {
-    getCollections();
-  }, []);
-
-  return loading ? <Loader /> : (
+  return (
     <div className="px-10 py-5">
       <CollectionDashboard data={collections} />
     </div>

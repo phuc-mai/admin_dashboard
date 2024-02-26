@@ -16,7 +16,7 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex max-lg:flex-col">
+    <div className="flex max-lg:flex-col text-grey-1">
       <LeftSideBar />
       <Topbar />
       <div className="flex-1">{children}</div>

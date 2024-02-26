@@ -1,5 +1,7 @@
+import Collection from "./models/Collection";
 import Customer from "./models/Customer";
 import Order from "./models/Order";
+import Product from "./models/Product";
 import { connectToDB } from "./mongoDB";
 
 export const getTotalSales = async () => {
@@ -23,7 +25,7 @@ export const getTotalCustomers = async () => {
 export const getSalesPerMonth = async () => {
   await connectToDB();
   const orders = await Order.find();
-  
+
   const salesPerMonth = orders.reduce((acc, order) => {
     const monthIndex = new Date(order.createdAt).getMonth();
     acc[monthIndex] = (acc[monthIndex] || 0) + order.totalAmount;

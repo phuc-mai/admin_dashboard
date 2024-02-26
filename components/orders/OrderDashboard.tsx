@@ -8,7 +8,7 @@ const OrderDashboard = ({ data }: { data: OrderColumnType[] }) => {
       <p className="text-heading2-bold">Orders</p>
 
       <Separator className="bg-grey-1 my-5" />
-      <DataTable columns={columns} data={data} searchText="title" />
+      <DataTable columns={columns} data={data} searchText="_id" />
     </>
   );
 };

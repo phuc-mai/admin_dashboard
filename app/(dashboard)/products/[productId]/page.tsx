@@ -1,35 +1,19 @@
-"use client"
-
-import Loader from "@/components/custom ui/Loader";
 import ProductForm from "@/components/products/ProductForm";
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import Collection from "@/lib/models/Collection";
+import Product from "@/lib/models/Product";
 
-const ProductDetails = ({ params }: { params: { productId: string } }) => {
-  const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState<ProductType>();
-
-  const fetchProduct = async () => {
-    try {
-      const res = await fetch(`/api/products/${params.productId}`, {
-        method: "GET",
-      });
-      if (res.ok) {
-        const data = await res.json();
-        setProduct(data);
-        setLoading(false);
-      }
-    } catch (error) {
-      console.log("productId_GET", error);
-      toast.error("Internal error");
+const ProductDetails = async ({ params }: { params: { productId: string } }) => {
+  const res = await fetch(
+    `http://localhost:3000/api/products/${params.productId}`,
+    {
+      method: "GET",
     }
-  };
+  );
+  const product = await res.json();
 
-  useEffect(() => {
-    fetchProduct();
-  }, []);
+  // const product = await Product.findById(params.productId) as ProductType;
 
-  return loading ? <Loader /> : <ProductForm initialData={product} />;
+  return <ProductForm initialData={product} />;
 };
 
 export default ProductDetails;

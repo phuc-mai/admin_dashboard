@@ -1,6 +1,5 @@
 import {
   LayoutDashboard,
-  Settings,
   Shapes,
   ShoppingBag,
   Tag,
