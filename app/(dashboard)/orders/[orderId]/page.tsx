@@ -4,9 +4,6 @@ const OrderDetails = async ({ params }: { params: { orderId: string } }) => {
   const res = await fetch(`http://localhost:3000/api/orders/${params.orderId}`);
   const { order, customer } = await res.json();
 
-  // const order = data.order;
-  // const customer = data.customer;
-
   const { streetNumber, streetName, city, state, postalCode, country } =
     order.shippingAddress;
 

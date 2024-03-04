@@ -57,6 +57,7 @@ export function MultiSelect({
               onClick={() => {
                 onRemove(collection._id);
               }}
+              type="button"
             >
               <X className="h-3 w-3" />
             </button>

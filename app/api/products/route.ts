@@ -35,11 +35,15 @@ export const POST = async (req: NextRequest) => {
 
     await newProduct.save();
 
-    // update collections
-    for (const collectionId of collections) {
-      await Collection.findByIdAndUpdate(collectionId, {
-        $push: { products: newProduct._id },
-      });
+    // Update collections
+    if (collections) {
+      for (const collectionId of collections) {
+        const collection = await Collection.findById(collectionId);
+        if (collection) {
+          collection.products.push(newProduct._id);
+          await collection.save();
+        }
+      }
     }
 
     return NextResponse.json(newProduct, { status: 200 });
