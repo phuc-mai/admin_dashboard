@@ -24,7 +24,14 @@ export const GET = async (
       );
     }
 
-    return NextResponse.json(product, { status: 200 });
+    return NextResponse.json(product, {
+      headers: {
+        "Access-Control-Allow-Origin": "http://localhost:3001",
+        "Access-Control-Allow-Methods": "GET",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+      status: 200,
+    });
   } catch (error) {
     console.log("[productId_GET]", error);
     return new NextResponse("Internal error", { status: 500 });
@@ -147,5 +154,3 @@ export const DELETE = async (
     return new NextResponse("Internal error", { status: 500 });
   }
 };
-
-export const dynamic = "force-dynamic";

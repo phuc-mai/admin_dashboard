@@ -38,7 +38,7 @@ const formSchema = z.object({
 });
 
 type ProductFormProps = {
-  initialData?: ProductType;
+  initialData?: ProductType | null;
 };
 
 const ProductForm: React.FC<ProductFormProps> = ({ initialData }) => {

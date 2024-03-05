@@ -44,7 +44,7 @@ export const POST = async (req: Request) => {
         }
       );
 
-      const lineItems = await retrievedSession?.line_items?.data;
+      const lineItems = retrievedSession?.line_items?.data;
 
       const orderItems = lineItems?.map((item: any) => {
         return {

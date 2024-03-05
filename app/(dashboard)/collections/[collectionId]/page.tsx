@@ -1,20 +1,32 @@
-import CollectionForm from "@/components/collections/CollectionForm";
-import Collection from "@/lib/models/Collection";
+"use client"
 
-const CollectionDetails = async ({
+import CollectionForm from "@/components/collections/CollectionForm";
+import { useEffect, useState } from "react";
+
+const CollectionDetails = ({
   params,
 }: {
   params: { collectionId: string };
 }) => {
-  const res = await fetch(
-    `http://localhost:3000/api/collections/${params.collectionId}`,
-    {
-      method: "GET",
-    }
-  );
-  const collectionDetails = await res.json();
+  const [loading, setLoading] = useState(true)
+  const [collectionDetails, setCollectionDetails] = useState<CollectionType | null>(null)
 
-  // const collectionDetails = await Collection.findById(params.collectionId);
+  const getCollectionDetails = async () => {
+    try { 
+      const res = await fetch(`/api/collections/${params.collectionId}`, {
+        method: "GET"
+      })
+      const data = await res.json()
+      setCollectionDetails(data)
+      setLoading(false)
+    } catch (err) {
+      console.log("[collectionId_GET]", err)
+    }
+  }
+
+  useEffect(() => {
+    getCollectionDetails()
+  }, [])
 
   return <CollectionForm initialData={collectionDetails} />;
 };

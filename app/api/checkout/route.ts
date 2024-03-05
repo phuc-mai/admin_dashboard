@@ -32,8 +32,8 @@ export async function POST(req: Request) {
         allowed_countries: ["US", "CA"], // List of allowed countries for shipping address
       },
       shipping_options: [
-        { shipping_rate: "shr_1OMubtDgraNiyvtnPzxjMBKT" },
-        { shipping_rate: "shr_1MfufhDgraNiyvtnDGef2uwK" },
+        { shipping_rate: "shr_1OqhvwI8nMdVaE1jJyruAUAY" },
+        { shipping_rate: "shr_1OqhwrI8nMdVaE1jRS5A6gbh" },
       ],
       line_items: cartItems.map((cartItem: any) => ({
         
