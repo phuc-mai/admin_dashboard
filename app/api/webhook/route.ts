@@ -1,14 +1,14 @@
 import Order from "@/lib/models/Order";
 import Customer from "@/lib/models/Customer";
 import { connectToDB } from "@/lib/mongoDB";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
 export const stripe = new Stripe(process.env.NEXT_PUBLIC_STRIPE_SECRET_KEY!, {
   typescript: true,
 });
 
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
   try {
     const rawBody = await req.text();
     const signature = req.headers.get("stripe-signature") as string;
